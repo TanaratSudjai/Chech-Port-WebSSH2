@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  php:
+    container_name: web
+    build: .
+    volumes:
+      - ./src:/var/www/html/
+    ports:
+      - 8808:80
+    
+  ssh:
+    container_name: ssh
+    image: rastasheep/ubuntu-sshd
+    ports:
+      - 2222:22 
+
+  mailtest25:
+    container_name: mailtest25
+    image: djfarrelly/maildev
+    ports:
+      - 25:25
+      - 9001:80
+
+  nginxtest:
+    container_name: nginxtest 
+    image: nginx
+    ports:
+      - 9003:80
+
+  
